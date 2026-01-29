@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Farmers - Chesikaki Admin</title>
+    <link rel="stylesheet" href="admin.css">
+    <style>
+        .farmers-table {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+            color: white;
+        }
+
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        tr:hover {
+            background: #f5f5f5;
+        }
+
+        .btn-delete {
+            background: #ff5252;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-delete:hover {
+            background: #d32f2f;
+        }
+
+        .btn-view {
+            background: #2196f3;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .btn-view:hover {
+            background: #1976d2;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand" onclick="goToDashboard()">👨‍💼 Chesikaki Admin Panel</div>
+        <div class="nav-user">
+            <span id="adminName">Admin</span>
+            <button onclick="goToDashboard()" class="btn-cart" style="background: #2196f3;">📊 Dashboard</button>
+            <button onclick="adminLogout()" class="btn-logout">Logout</button>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <div class="page-header">
+            <h1>👥 Manage Farmers</h1>
+            <p>View and manage registered farmers</p>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-info">
+                    <div class="stat-value" id="totalFarmers">0</div>
+                    <div class="stat-label">Total Farmers</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Farmers Table -->
+        <div class="farmers-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Full Name</th>
+                        <th>Farmer Number</th>
+                        <th>ID Number</th>
+                        <th>Phone Number</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="farmersTableBody">
+                    <!-- Farmers will be loaded here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="admin-farmers.js"></script>
+</body>
+</html>

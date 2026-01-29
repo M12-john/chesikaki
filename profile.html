@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Chesikaki Farmers Portal</title>
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand" onclick="goHome()">🌾 Chesikaki Farmers Portal</div>
+        <div class="nav-user">
+            <span id="userName">Loading...</span>
+            <button onclick="logout()" class="btn-logout">Logout</button>
+        </div>
+    </nav>
+
+    <div class="profile-container">
+        <div class="page-header">
+            <h1>👤 My Profile</h1>
+            <p>Your information and order history</p>
+        </div>
+
+        <div class="profile-content">
+            <!-- Personal Information -->
+            <div class="info-card">
+                <h2>📋 Personal Information</h2>
+                <div class="info-row">
+                    <span class="info-label">Full Name:</span>
+                    <span class="info-value" id="fullName">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Farmer Number:</span>
+                    <span class="info-value" id="farmerNumber">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">ID Number:</span>
+                    <span class="info-value" id="idNumber">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Phone Number:</span>
+                    <span class="info-value" id="phoneNumber">-</span>
+                </div>
+            </div>
+
+            <!-- Order Statistics -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📦</div>
+                    <div class="stat-value" id="totalOrders">0</div>
+                    <div class="stat-label">Total Orders</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⏳</div>
+                    <div class="stat-value" id="pendingOrders">0</div>
+                    <div class="stat-label">Pending</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-value" id="verifiedOrders">0</div>
+                    <div class="stat-label">Verified</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🎉</div>
+                    <div class="stat-value" id="collectedOrders">0</div>
+                    <div class="stat-label">Collected</div>
+                </div>
+            </div>
+
+            <!-- Order History -->
+            <div class="orders-section">
+                <h2>📜 Order History</h2>
+                <div id="ordersContainer">
+                    <!-- Orders will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="profile.js"></script>
+</body>
+</html>

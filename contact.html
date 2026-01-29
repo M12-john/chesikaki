@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact & Support - 🌾Chesikaki Farmers Portal</title>
+    <link rel="stylesheet" href="contact.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand" onclick="goHome()">🌾 Chesikaki Farmers Portal</div>
+        <div class="nav-user">
+            <span id="userName">Loading...</span>
+            <button onclick="logout()" class="btn-logout">Logout</button>
+        </div>
+    </nav>
+
+    <div class="contact-container">
+        <div class="page-header">
+            <h1>📞 Contact & Support</h1>
+            <p>We're here to help you!</p>
+        </div>
+
+        <div class="contact-content">
+            <!-- Contact Information -->
+            <div class="info-section">
+                <h2>📍 Our Office</h2>
+                <div class="contact-card">
+                    <div class="contact-item">
+                        <div class="contact-icon">🏢</div>
+                        <div class="contact-details">
+                            <h3>Address</h3>
+                            <p>🌾Chesikaki Trading Center<br>Near Chesikaki Market<br>Bungoma County, Kenya</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div class="contact-details">
+                            <h3>Phone Numbers</h3>
+                            <p>Main: +254 712 345 678<br>Support: +254 723 456 789</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p>info@chesikakifarmers.co.ke<br>support@chesikakifarmers.co.ke</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">⏰</div>
+                        <div class="contact-details">
+                            <h3>Working Hours</h3>
+                            <p>Monday - Friday: 8:00 AM - 5:00 PM<br>Saturday: 8:00 AM - 2:00 PM<br>Sunday: Closed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="form-section">
+                <h2>💬 Send Us a Message</h2>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject" required>
+                            <option value="">Select a subject</option>
+                            <option value="Order Inquiry">Order Inquiry</option>
+                            <option value="Product Question">Product Question</option>
+                            <option value="Payment Issue">Payment Issue</option>
+                            <option value="Feedback">Feedback</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" rows="6" placeholder="Type your message here..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Send Message 📨</button>
+                </form>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="faq-section">
+                <h2>❓ Frequently Asked Questions</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">How do I collect my order?</div>
+                    <div class="faq-answer">
+                        After submitting your order, you'll receive a receipt with an order number. 
+                        Bring this receipt to our office, make payment, and collect your items.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">What payment methods do you accept?</div>
+                    <div class="faq-answer">
+                        We accept Cash, M-Pesa, and Bank Transfer at our office. 
+                        Payment is made when you collect your order.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Can I cancel or modify my order?</div>
+                    <div class="faq-answer">
+                        Yes! Contact us immediately if you need to cancel or modify your order 
+                        before it's verified. Call our support line or visit our office.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">How long does order verification take?</div>
+                    <div class="faq-answer">
+                        Most orders are verified within 24 hours during working days. 
+                        You can check your order status in your profile page.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Do you offer delivery services?</div>
+                    <div class="faq-answer">
+                        Currently, all orders must be collected from our office. 
+                        We're working on delivery services for the future!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="contact.js"></script>
+</body>
+</html>

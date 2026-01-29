@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Seedlings - Chesikaki Farmers Portal</title>
+    <link rel="stylesheet" href="products.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand" onclick="goHome()">🌾 Chesikaki Farmers Portal</div>
+        <div class="nav-user">
+            <span id="userName">Loading...</span>
+            <button onclick="goToCart()" class="btn-cart">
+                🛒 Cart <span class="cart-badge" id="cartCount">0</span>
+            </button>
+            <button onclick="logout()" class="btn-logout">Logout</button>
+        </div>
+    </nav>
+
+    <div class="products-container">
+        <div class="page-header">
+            <h1>☕ Coffee Seedlings</h1>
+            <p>Quality coffee seedlings for your plantation</p>
+        </div>
+
+        <div class="products-grid" id="productsGrid">
+            <!-- Products will be loaded by JavaScript -->
+        </div>
+
+        <!-- Recommendations Section -->
+        <div id="recommendations"></div>
+    </div>
+
+    <script src="recommendations.js"></script>
+    <script src="coffee.js"></script>
+</body>
+</html>

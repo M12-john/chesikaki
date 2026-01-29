@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chesikaki Farmers Portal - Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">🌾 Chesikaki Farmers Portal</div>
+        <div class="nav-user">
+            <span id="userName">Loading...</span>
+            <button onclick="logout()" class="btn-logout">Logout</button>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <div class="welcome-section">
+            <h1 id="welcomeMessage">Welcome back!</h1>
+            <p>Select a category below to browse our products</p>
+        </div>
+
+        <div class="cards-grid">
+            <div class="dashboard-card" onclick="goToPage('tools.html')">
+                <div class="card-icon">🛠️</div>
+                <h3>Farming Tools</h3>
+                <p>Jembes, Pangas, Wheelbarrows, Spades & More</p>
+                <button class="card-btn">Browse Tools</button>
+            </div>
+
+            <div class="dashboard-card" onclick="goToPage('pesticides.html')">
+                <div class="card-icon">🧪</div>
+                <h3>Pesticides</h3>
+                <p>Quality pesticides for crop protection</p>
+                <button class="card-btn">Browse Pesticides</button>
+            </div>
+
+            <div class="dashboard-card" onclick="goToPage('fertilizers.html')">
+                <div class="card-icon">🌱</div>
+                <h3>Fertilizers</h3>
+                <p>Organic & chemical fertilizers for better yields</p>
+                <button class="card-btn">Browse Fertilizers</button>
+            </div>
+
+            <div class="dashboard-card" onclick="goToPage('coffee.html')">
+                <div class="card-icon">☕</div>
+                <h3>Coffee Seedlings</h3>
+                <p>Quality coffee seedlings for plantation</p>
+                <button class="card-btn">Browse Coffee</button>
+            </div>
+
+            <div class="dashboard-card" onclick="goToPage('search.html')">
+                <div class="card-icon">🔍</div>
+                <h3>Search Products</h3>
+                <p>Find products across all categories</p>
+                <button class="card-btn">Search Now</button>
+            </div>
+
+            <div class="dashboard-card" onclick="goToPage('cart.html')">
+                <div class="card-icon">🛒</div>
+                <h3>My Cart</h3>
+                <p>View your selected items</p>
+                <span class="cart-badge" id="cartCount">0</span>
+                <button class="card-btn">View Cart</button>
+            </div>
+
+            <div class="dashboard-card" onclick="goToPage('profile.html')">
+                <div class="card-icon">👤</div>
+                <h3>My Profile</h3>
+                <p>View your info & order history</p>
+                <button class="card-btn">View Profile</button>
+            </div>
+
+            <div class="dashboard-card" onclick="goToPage('contact.html')">
+                <div class="card-icon">📞</div>
+                <h3>Contact & Support</h3>
+                <p>Get help and support</p>
+                <button class="card-btn">Contact Us</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

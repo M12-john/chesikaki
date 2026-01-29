@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Management - Chesikaki Admin</title>
+    <link rel="stylesheet" href="admin.css">
+    <style>
+        .stock-table {
+            background: white;
+            border-radius: 15px;
+            overflow-x: auto; 
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 1000px;
+        }
+
+        thead {
+            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+            color: white;
+        }
+
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        tr:hover {
+            background: #f5f5f5;
+        }
+
+        .stock-status {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .stock-good {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .stock-low {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .stock-out {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .stock-controls {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .stock-input {
+            width: 60px;
+            padding: 6px;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .btn-stock {
+            padding: 6px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 12px;
+            transition: opacity 0.3s;
+        }
+
+        .btn-stock:hover {
+            opacity: 0.8;
+        }
+
+        .btn-update {
+            background: #4caf50;
+            color: white;
+        }
+
+        .btn-add {
+            background: #2196f3;
+            color: white;
+        }
+
+        .btn-subtract {
+            background: #ff9800;
+            color: white;
+        }
+
+        .btn-delete-product {
+            background: #ff5252;
+            color: white;
+            padding: 6px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .btn-delete-product:hover {
+            background: #d32f2f;
+        }
+
+        .filter-bar {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .filter-bar select {
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .alert-banner {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .alert-icon {
+            font-size: 30px;
+        }
+
+        .product-icon {
+            font-size: 30px;
+        }
+
+        /* Add Product Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            max-width: 600px;
+            width: 100%;
+            border-radius: 15px;
+            padding: 30px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .modal-header h2 {
+            color: #1a237e;
+            margin: 0;
+        }
+
+        .modal-close {
+            background: #ff5252;
+            color: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #1a237e;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #1a237e;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn-submit:hover {
+            background: #388e3c;
+        }
+
+        .btn-add-product {
+            background: #4caf50;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .btn-add-product:hover {
+            background: #388e3c;
+        }
+
+        .emoji-hint {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand" onclick="goToDashboard()">👨‍💼 Chesikaki Admin Panel</div>
+        <div class="nav-user">
+            <span id="adminName">Admin</span>
+            <button onclick="goToDashboard()" class="btn-cart" style="background: #2196f3;">📊 Dashboard</button>
+            <button onclick="adminLogout()" class="btn-logout">Logout</button>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <div class="page-header">
+            <h1>📦 Stock Management</h1>
+            <p>Manage product inventory levels</p>
+        </div>
+
+        <button class="btn-add-product" onclick="openAddProductModal()">➕ Add New Product</button>
+
+        <div id="lowStockAlert"></div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">📦</div>
+                <div class="stat-info">
+                    <div class="stat-value" id="totalProducts">0</div>
+                    <div class="stat-label">Total Products</div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">✅</div>
+                <div class="stat-info">
+                    <div class="stat-value" id="inStockProducts">0</div>
+                    <div class="stat-label">In Stock</div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">⚠️</div>
+                <div class="stat-info">
+                    <div class="stat-value" id="lowStockProducts">0</div>
+                    <div class="stat-label">Low Stock</div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">❌</div>
+                <div class="stat-info">
+                    <div class="stat-value" id="outOfStockProducts">0</div>
+                    <div class="stat-label">Out of Stock</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="filter-bar">
+            <select id="categoryFilter" onchange="loadStock()">
+                <option value="All">All Categories</option>
+                <option value="Farming Tools">Farming Tools</option>
+                <option value="Pesticides">Pesticides</option>
+                <option value="Fertilizers">Fertilizers</option>
+                <option value="Coffee Seedlings">Coffee Seedlings</option>
+            </select>
+
+            <select id="stockFilter" onchange="loadStock()">
+                <option value="All">All Stock Levels</option>
+                <option value="In Stock">In Stock</option>
+                <option value="Low Stock">Low Stock</option>
+                <option value="Out of Stock">Out of Stock</option>
+            </select>
+        </div>
+
+        <div class="stock-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="stockTableBody">
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="modal" id="addProductModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>➕ Add New Product</h2>
+                <button class="modal-close" onclick="closeAddProductModal()">×</button>
+            </div>
+
+            <form id="addProductForm">
+                <div class="form-group">
+                    <label for="productCategory">Category *</label>
+                    <select id="productCategory" required>
+                        <option value="">Select Category</option>
+                        <option value="Farming Tools">Farming Tools</option>
+                        <option value="Pesticides">Pesticides</option>
+                        <option value="Fertilizers">Fertilizers</option>
+                        <option value="Coffee Seedlings">Coffee Seedlings</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="productName">Product Name *</label>
+                    <input type="text" id="productName" placeholder="e.g., Jembe (Hoe)" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="productPrice">Price (KSh) *</label>
+                    <input type="number" id="productPrice" placeholder="e.g., 800" min="0" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="productStock">Initial Stock Quantity *</label>
+                    <input type="number" id="productStock" placeholder="e.g., 25" min="0" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="productImage">Product Image URL *</label>
+                     <input type="text" id="productImage" placeholder="e.g., https://images.unsplash.com/photo-..." required>
+                    <div class="emoji-hint">Paste an image URL from Unsplash, or any image hosting service. Or use an emoji (e.g., 🔨)</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="productDescription">Description *</label>
+                    <textarea id="productDescription" placeholder="Describe the product, its features, and benefits..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">✅ Add Product</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="admin-stock.js"></script>
+</body>
+</html>

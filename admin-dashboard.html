@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Chesikaki Farmers Portal</title>
+    <link rel="stylesheet" href="admin.css">
+    <style>
+        .btn-delete {
+            background: #ff5252;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn-delete:hover {
+            background: #d32f2f;
+        }
+
+        .danger-zone {
+            background: #fff3cd;
+            border: 2px solid #ff9800;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .danger-zone h3 {
+            color: #856404;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .danger-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-danger {
+            background: #ff5252;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn-danger:hover {
+            background: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">👨‍💼 Chesikaki Admin Panel</div>
+        <div class="nav-user">
+            <span id="adminName">Admin</span>
+            <button onclick="window.location.href='admin-stock.html'" class="btn-cart" style="background: #2196f3;">📦 Stock</button>
+            <button onclick="adminLogout()" class="btn-logout">Logout</button>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <div class="page-header">
+            <h1>📊 Admin Dashboard</h1>
+            <p>Manage orders and track sales</p>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="stats-grid">
+            <div class="stat-card stat-total">
+                <div class="stat-icon">📦</div>
+                <div class="stat-info">
+                    <div class="stat-value" id="totalOrders">0</div>
+                    <div class="stat-label">Total Orders</div>
+                </div>
+            </div>
+
+            <div class="stat-card stat-pending">
+                <div class="stat-icon">⏳</div>
+                <div class="stat-info">
+                    <div class="stat-value" id="pendingOrders">0</div>
+                    <div class="stat-label">Pending Orders</div>
+                </div>
+            </div>
+
+            <div class="stat-card stat-verified">
+                <div class="stat-icon">✅</div>
+                <div class="stat-info">
+                    <div class="stat-value" id="verifiedOrders">0</div>
+                    <div class="stat-label">Verified Orders</div>
+                </div>
+            </div>
+
+            <div class="stat-card stat-collected">
+                <div class="stat-icon">🎉</div>
+                <div class="stat-info">
+                    <div class="stat-value" id="collectedOrders">0</div>
+                    <div class="stat-label">Collected Orders</div>
+                </div>
+            </div>
+
+            <div class="stat-card stat-revenue">
+                <div class="stat-icon">💰</div>
+                <div class="stat-info">
+                    <div class="stat-value" id="totalRevenue">KSh 0</div>
+                    <div class="stat-label">Total Revenue</div>
+                </div>
+            </div>
+
+            <div class="stat-card stat-farmers">
+                <div class="stat-icon">👥</div>
+                <div class="stat-info">
+                    <div class="stat-value" id="totalFarmers">0</div>
+                    <div class="stat-label">Registered Farmers</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter Section -->
+        <div class="filter-section">
+            <h2>🔍 Filter Orders</h2>
+            <div class="filter-controls">
+                <select id="statusFilter" onchange="loadOrders()">
+                    <option value="All">All Orders</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Verified">Verified</option>
+                    <option value="Collected">Collected</option>
+                </select>
+
+                <input type="text" id="searchInput" placeholder="Search by order number or farmer name..." onkeyup="loadOrders()">
+            </div>
+        </div>
+
+        <!-- Orders Table -->
+        <div class="orders-section">
+            <h2>📋 All Orders</h2>
+            <div id="ordersTable">
+                <!-- Orders will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Danger Zone -->
+        <div class="danger-zone">
+            <h3>⚠️ Danger Zone - Delete Functions</h3>
+            <p style="color: #666; margin-bottom: 15px;">Use these functions carefully. Deleted data cannot be recovered!</p>
+            <div class="danger-buttons">
+                <button class="btn-danger" onclick="showFarmersManagement()">👥 Manage Farmers</button>
+                <button class="btn-danger" onclick="confirmDeleteAllOrders()">🗑️ Delete All Orders</button>
+                <button class="btn-danger" onclick="confirmResetSystem()">🔄 Reset Entire System</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin-dashboard.js"></script>
+</body>
+</html>

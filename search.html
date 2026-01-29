@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Products - Chesikaki Farmers Portal</title>
+    <link rel="stylesheet" href="products.css">
+    <style>
+        .search-header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-box {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #4a7c2c;
+            border-radius: 10px;
+            font-size: 18px;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #2d5016;
+        }
+
+        .btn-search {
+            padding: 15px 40px;
+            background: #4a7c2c;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn-search:hover {
+            background: #2d5016;
+        }
+
+        .filter-row {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            padding: 12px;
+            border: 2px solid #d0e8c5;
+            border-radius: 8px;
+            font-size: 16px;
+            min-width: 150px;
+        }
+
+        .search-results-info {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #4a7c2c;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 60px;
+            color: #666;
+        }
+
+        .no-results-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand" onclick="goHome()">🌾 Chesikaki Farmers Portal</div>
+        <div class="nav-user">
+            <span id="userName">Loading...</span>
+            <button onclick="goToCart()" class="btn-cart">
+                🛒 Cart <span class="cart-badge" id="cartCount">0</span>
+            </button>
+            <button onclick="logout()" class="btn-logout">Logout</button>
+        </div>
+    </nav>
+
+    <div class="products-container">
+        <div class="page-header">
+            <h1>🔍 Search Products</h1>
+            <p>Find the products you need</p>
+        </div>
+
+        <div class="search-header">
+            <div class="search-box">
+                <input type="text" class="search-input" id="searchInput" placeholder="Search for tools, pesticides, fertilizers..." onkeypress="handleEnter(event)">
+                <button class="btn-search" onclick="searchProducts()">🔍 Search</button>
+            </div>
+
+            <div class="filter-row">
+                <select class="filter-select" id="categoryFilter" onchange="searchProducts()">
+                    <option value="All">All Categories</option>
+                    <option value="Farming Tools">Farming Tools</option>
+                    <option value="Pesticides">Pesticides</option>
+                    <option value="Fertilizers">Fertilizers</option>
+                    <option value="Coffee Seedlings">Coffee Seedlings</option>
+                </select>
+
+                <select class="filter-select" id="priceFilter" onchange="searchProducts()">
+                    <option value="All">All Prices</option>
+                    <option value="0-500">KSh 0 - 500</option>
+                    <option value="501-1000">KSh 501 - 1,000</option>
+                    <option value="1001-2000">KSh 1,001 - 2,000</option>
+                    <option value="2001-5000">KSh 2,001 - 5,000</option>
+                    <option value="5001+">KSh 5,001+</option>
+                </select>
+
+                <select class="filter-select" id="sortFilter" onchange="searchProducts()">
+                    <option value="relevance">Sort by: Relevance</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="name">Name: A to Z</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="search-results-info" id="resultsInfo"></div>
+
+        <div class="products-grid" id="searchResults">
+            <div class="no-results">
+                <div class="no-results-icon">🔍</div>
+                <h2>Start Searching!</h2>
+                <p>Enter a product name or select filters to find what you need</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="search.js"></script>
+</body>
+</html>
